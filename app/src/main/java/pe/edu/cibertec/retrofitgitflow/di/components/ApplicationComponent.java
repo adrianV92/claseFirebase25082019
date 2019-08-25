@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Named;
@@ -29,6 +30,7 @@ public interface ApplicationComponent {
     Context exposeContext();
     JsonPlaceHolderApi exposeJsonPlaceHolderApi();
     FirebaseAuth exposeFirebaseAuth();
+    FirebaseStorage exposeStorage();
     FirebaseFirestore exposeFirestore();
     IPostRepository exposePostRepository();
     IPostFirestoreRepository exposeFirestoreRepository();

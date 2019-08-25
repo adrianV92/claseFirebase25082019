@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Named;
@@ -114,6 +115,12 @@ public class ApplicationModule {
     @Singleton
     IPostFirestoreRepository providesPostFirestoreRepository(PostFirestoreRepositoryImpl firestoreRepository){
         return firestoreRepository;
+    }
+
+    @Provides
+    @Singleton
+    FirebaseStorage providesFirebaseStorage(){
+        return FirebaseStorage.getInstance() ;
     }
 
 }

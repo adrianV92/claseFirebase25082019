@@ -8,6 +8,8 @@ import io.reactivex.Scheduler;
 import pe.edu.cibertec.retrofitgitflow.data.repository.IPostFirestoreRepository;
 import pe.edu.cibertec.retrofitgitflow.data.repository.IPostRepository;
 import pe.edu.cibertec.retrofitgitflow.di.scope.PerActivity;
+import pe.edu.cibertec.retrofitgitflow.domain.create_post_interactor.CreatePostInteractorImpl;
+import pe.edu.cibertec.retrofitgitflow.domain.create_post_interactor.ICreatePostInteractor;
 import pe.edu.cibertec.retrofitgitflow.domain.main_interactor.IMainInteractor;
 import pe.edu.cibertec.retrofitgitflow.domain.main_interactor.MainInteractorImpl;
 import pe.edu.cibertec.retrofitgitflow.domain.post_detail_interactor.IPostDetailInteractor;
@@ -41,5 +43,11 @@ public class PresentationModule {
     @Provides
     IPostFirestoreInteractor providesPostFirestoreInteractor(IPostFirestoreRepository repository){
         return  new PostFirestoreInteractorImpl(repository);
+    }
+
+    @PerActivity
+    @Provides
+    ICreatePostInteractor provideCreatePostInteractor(IPostFirestoreRepository repository){
+        return new CreatePostInteractorImpl(repository);
     }
 }

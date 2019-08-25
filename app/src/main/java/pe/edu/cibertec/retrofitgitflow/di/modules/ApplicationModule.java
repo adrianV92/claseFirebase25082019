@@ -15,6 +15,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import pe.edu.cibertec.retrofitgitflow.data.repository.IPostRepository;
+import pe.edu.cibertec.retrofitgitflow.data.repository.impl.PostRepositoryImpl;
+import pe.edu.cibertec.retrofitgitflow.di.scope.PerActivity;
 import pe.edu.cibertec.retrofitgitflow.network.JsonPlaceHolderApi;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -27,6 +30,12 @@ public class ApplicationModule {
 
     public ApplicationModule(Context context) {
         this.mContext = context;
+    }
+
+    @Singleton
+    @Provides
+    JsonPlaceHolderApi provideJsonPlaceHolderApi(Retrofit retrofit){
+        return retrofit.create(JsonPlaceHolderApi.class);
     }
 
     @Singleton
@@ -84,5 +93,11 @@ public class ApplicationModule {
     @Singleton
     FirebaseAuth provideFirebaseAuth(){
         return FirebaseAuth.getInstance();
+    }
+
+    @Provides
+    @Singleton
+    IPostRepository providePostRepository(PostRepositoryImpl postRepository){
+        return postRepository;
     }
 }

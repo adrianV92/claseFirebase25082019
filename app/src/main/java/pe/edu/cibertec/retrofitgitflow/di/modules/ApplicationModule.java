@@ -3,6 +3,7 @@ package pe.edu.cibertec.retrofitgitflow.di.modules;
 import android.content.Context;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Named;
@@ -15,7 +16,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import pe.edu.cibertec.retrofitgitflow.data.repository.IPostFirestoreRepository;
 import pe.edu.cibertec.retrofitgitflow.data.repository.IPostRepository;
+import pe.edu.cibertec.retrofitgitflow.data.repository.impl.PostFirestoreRepositoryImpl;
 import pe.edu.cibertec.retrofitgitflow.data.repository.impl.PostRepositoryImpl;
 import pe.edu.cibertec.retrofitgitflow.di.scope.PerActivity;
 import pe.edu.cibertec.retrofitgitflow.network.JsonPlaceHolderApi;
@@ -97,7 +100,20 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
+    FirebaseFirestore provideFirebaseFirestore(){
+        return FirebaseFirestore.getInstance();
+    }
+
+    @Provides
+    @Singleton
     IPostRepository providePostRepository(PostRepositoryImpl postRepository){
         return postRepository;
     }
+
+    @Provides
+    @Singleton
+    IPostFirestoreRepository providesPostFirestoreRepository(PostFirestoreRepositoryImpl firestoreRepository){
+        return firestoreRepository;
+    }
+
 }

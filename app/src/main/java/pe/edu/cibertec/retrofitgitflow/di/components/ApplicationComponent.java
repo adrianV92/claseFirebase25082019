@@ -4,6 +4,7 @@ package pe.edu.cibertec.retrofitgitflow.di.components;
 import android.content.Context;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Named;
@@ -13,6 +14,7 @@ import dagger.Component;
 import io.reactivex.Scheduler;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import pe.edu.cibertec.retrofitgitflow.data.repository.IPostFirestoreRepository;
 import pe.edu.cibertec.retrofitgitflow.data.repository.IPostRepository;
 import pe.edu.cibertec.retrofitgitflow.di.modules.ApplicationModule;
 import pe.edu.cibertec.retrofitgitflow.network.JsonPlaceHolderApi;
@@ -27,7 +29,9 @@ public interface ApplicationComponent {
     Context exposeContext();
     JsonPlaceHolderApi exposeJsonPlaceHolderApi();
     FirebaseAuth exposeFirebaseAuth();
+    FirebaseFirestore exposeFirestore();
     IPostRepository exposePostRepository();
+    IPostFirestoreRepository exposeFirestoreRepository();
 
 
     @Named("ui_thread") Scheduler uiThread();
